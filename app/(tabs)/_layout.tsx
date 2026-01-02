@@ -1,5 +1,5 @@
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
@@ -23,6 +23,13 @@ export default function TabLayout() {
           tabBarInactiveTintColor: '#A0AEC0',
         }}>
         <Tabs.Screen
+          name="community"
+          options={{
+            title: 'Tribe',
+            tabBarIcon: ({ color }) => <Ionicons name="people" size={24} color={color} />,
+          }}
+        />
+        <Tabs.Screen
           name="home"
           options={{
             title: 'Home',
@@ -37,17 +44,19 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="desk"
+          name="profile"
           options={{
-            title: 'Desk',
-            tabBarIcon: ({ color }) => <MaterialCommunityIcons name="chair-rolling" size={24} color={color} />,
+            title: 'Profile',
+            tabBarIcon: ({ color }) => <Ionicons name="person" size={24} color={color} />,
           }}
         />
+        {/* Hide desk screen from tabs but keep file if needed for reference, or just ensure it's not in the list if we want to completely remove access */}
         <Tabs.Screen
-          name="community"
+          name="desk"
           options={{
-            title: 'Tribe',
-            tabBarIcon: ({ color }) => <Ionicons name="people" size={24} color={color} />,
+            href: null, // This hides it from the tab bar
+            title: 'Desk',
+            tabBarIcon: ({ color }) => <Ionicons name="desktop" size={24} color={color} />,
           }}
         />
       </Tabs>

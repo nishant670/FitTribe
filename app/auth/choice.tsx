@@ -1,14 +1,16 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ImageBackground, Text, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Button } from '../../components/Button';
+import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AuthChoiceScreen() {
     const router = useRouter();
+    const { height } = Dimensions.get('window');
+    const isSmallScreen = height < 700;
 
-    const handleGuest = () => {
+    const handleFindTribe = () => {
         router.push('/onboarding');
     };
 
@@ -16,48 +18,80 @@ export default function AuthChoiceScreen() {
         router.push('/auth/login');
     };
 
-    const insets = useSafeAreaInsets();
+    const handleGuest = () => {
+        router.push('/onboarding');
+    };
 
     return (
-        <View className="flex-1 bg-gray-900" style={{ paddingTop: insets.top }}>
-            <StatusBar style="light" />
-            {/* Background Image Placeholder - In real app use actual image */}
-            <View className="flex-1 bg-gray-800 relative">
-                <ImageBackground
-                    source={{ uri: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop' }}
-                    className="flex-1 justify-end"
-                    resizeMode="cover"
-                >
-                    <View className="absolute inset-0 bg-black/40" /> {/* Overlay */}
+        <SafeAreaView className="flex-1 bg-white">
+            <StatusBar style="dark" />
 
-                    <View className="bg-white rounded-t-3xl p-8 pb-12 items-center">
-                        <Text className="text-3xl font-bold text-dark text-center mb-3">
-                            Build your streak.
-                        </Text>
-                        <Text className="text-gray-500 text-center mb-8 px-4 leading-6">
-                            Join the community of consistent movers. Start small, finish strong.
-                        </Text>
+            <View className="flex-1 px-6 items-center pt-2 pb-2 justify-between">
+                {/* Top Section */}
+                <View className="w-full h-full flex-1 mb-4">
+                    {/* Logo Header */}
+                    <View className="flex-row items-center justify-center mb-6 mt-2">
+                        <Ionicons name="people" size={24} color="#10B981" />
+                        <Text className="text-xl font-bold text-dark ml-2 tracking-tight">FitTribe</Text>
+                    </View>
 
-                        <Button
-                            title="Continue as Guest"
-                            onPress={handleGuest}
-                            className="w-full mb-4"
+                    {/* Hero Image */}
+                    <View className="w-full flex-1 rounded-[32px] overflow-hidden relative mb-6 bg-gray-100">
+                        <Image
+                            source={{ uri: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1000' }}
+                            className="w-full h-full"
+                            resizeMode="cover"
                         />
 
-                        <Button
-                            title="Sign In"
-                            onPress={handleSignIn}
-                            variant="secondary"
-                            className="w-full bg-gray-100"
-                            textClassName="text-dark"
-                        />
+                        {/* Floating Badge */}
+                        <View className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-3 rounded-2xl flex-row items-center shadow-lg">
+                            <View className="flex-row items-center mr-3 pl-1">
+                                {[1, 2, 3].map((_, i) => (
+                                    <View key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white -ml-2 first:ml-0 overflow-hidden">
+                                        <Image source={{ uri: `https://i.pravatar.cc/150?img=${i + 10}` }} className="w-full h-full" />
+                                    </View>
+                                ))}
+                            </View>
+                            <View>
+                                <Text className="text-dark font-bold text-xs">12k+ Active Tribes</Text>
+                                <Text className="text-gray-500 text-[10px]">Join a community today</Text>
+                            </View>
+                        </View>
+                    </View>
 
-                        <Text className="text-xs text-gray-400 mt-6 text-center">
-                            Create account later to sync progress
+                    {/* Text Content */}
+                    <View className="items-center mb-2">
+                        <Text className="text-3xl font-bold text-dark text-center mb-2 leading-tight">
+                            Fitness is easier when you're not alone.
+                        </Text>
+                        <Text className="text-gray-500 text-center text-sm px-4 leading-5">
+                            Join people with similar interests. Show up together. Stay consistent.
                         </Text>
                     </View>
-                </ImageBackground>
+                </View>
+
+                {/* Bottom Actions */}
+                <View className="w-full gap-3 mb-2">
+                    <TouchableOpacity
+                        onPress={handleFindTribe}
+                        className="w-full bg-green-500 py-3.5 rounded-full flex-row items-center justify-center shadow-lg shadow-green-200"
+                    >
+                        <Text className="text-white font-bold text-lg mr-2">Find My Tribe</Text>
+                        <Ionicons name="arrow-forward" size={20} color="white" />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={handleSignIn}
+                        className="w-full bg-white py-3.5 rounded-full flex-row items-center justify-center border border-gray-200"
+                    >
+                        <Text className="text-dark font-bold text-lg">Sign in</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={handleGuest} className="py-2 mb-2">
+                        <Text className="text-gray-500 font-medium text-center">Continue as Guest</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }

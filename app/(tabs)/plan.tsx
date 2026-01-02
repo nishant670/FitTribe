@@ -17,7 +17,7 @@ export default function PlanScreen() {
                         <TouchableOpacity>
                             <Ionicons name="notifications-outline" size={24} color="#1A202C" />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => router.push('/profile')}>
+                        <TouchableOpacity onPress={() => router.push('/(tabs)/profile')}>
                             <Image
                                 source={{ uri: 'https://i.pravatar.cc/150?img=11' }}
                                 className="w-9 h-9 rounded-full bg-gray-200"

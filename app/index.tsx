@@ -11,7 +11,7 @@ export default function SplashScreen() {
     useEffect(() => {
         const timer = setTimeout(() => {
             if (isOnboarded) {
-                router.replace('/(tabs)/home');
+                router.replace('/(tabs)/community');
             } else {
                 router.replace('/auth/choice');
             }
