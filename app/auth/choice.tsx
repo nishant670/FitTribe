@@ -53,8 +53,10 @@ export default function AuthChoiceScreen() {
                                 ))}
                             </View>
                             <View>
-                                <Text className="text-dark font-bold text-xs">12k+ Active Tribes</Text>
+                                <Text className="text-dark font-bold text-xs">1k+ Active Tribes</Text>
+
                                 <Text className="text-gray-500 text-[10px]">Join a community today</Text>
+
                             </View>
                         </View>
                     </View>

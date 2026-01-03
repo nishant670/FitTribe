@@ -11,22 +11,26 @@ export default function CommunityScreen() {
         <SafeAreaView className="flex-1 bg-white">
             {/* Header */}
             <View className="flex-row justify-between items-center px-6 pt-4 mb-6">
-                <Text className="text-2xl font-bold text-dark">Your Tribes</Text>
+                <Text className="text-xl font-bold text-dark">Good morning, Nishant </Text>
+
                 <View className="flex-row items-center gap-4">
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => router.push('/community/activity')}>
                         <Ionicons name="notifications-outline" size={24} color="#1A202C" />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => router.push('/community/discover')}>
                         <Ionicons name="compass-outline" size={24} color="#1A202C" />
                     </TouchableOpacity>
                 </View>
             </View>
 
+
             <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-                <Text className="px-6 text-gray-500 text-sm mb-6">Show up together, stay consistent</Text>
+
 
                 {/* Today in Your Tribes */}
                 <View className="mb-8">
+                    <Text className="px-6 text-gray-500 text-sm mb-6">Your tribes are active today</Text>
+
                     <View className="flex-row justify-between items-center px-6 mb-4">
                         <Text className="text-lg font-bold text-dark">Today in Your Tribes</Text>
                         <TouchableOpacity><Text className="text-primary font-bold text-sm">View All</Text></TouchableOpacity>

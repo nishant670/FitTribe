@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuthStore } from '../../store/useAuthStore';
 
 export default function LoginScreen() {
@@ -18,7 +19,7 @@ export default function LoginScreen() {
     };
 
     return (
-        <SafeAreaView className="flex-1 bg-white">
+        <SafeAreaView className="flex-1 bg-white" edges={['top', 'left', 'right']}>
             <View className="flex-row items-center px-6 py-4">
                 <TouchableOpacity onPress={() => router.back()}>
                     <Ionicons name="arrow-back" size={24} color="#1A202C" />
@@ -31,7 +32,7 @@ export default function LoginScreen() {
                     <View className="w-16 h-16 bg-green-100 rounded-2xl items-center justify-center mb-4">
                         <Ionicons name="barbell" size={32} color="#10B981" />
                     </View>
-                    <Text className="text-3xl font-bold text-dark mb-2">Welcome Back</Text>
+                    <Text className="text-3xl font-bold text-dark mb-2">Welcome Back </Text>
                     <Text className="text-gray-500">Let's crush today's goals.</Text>
                 </View>
 
